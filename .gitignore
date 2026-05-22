@@ -1,0 +1,10 @@
+# Ignore entire virtual environment folder
+venv/
+.venv/
+
+# Ignore Python runtime cache files
+__pycache/
+*.pyc
+
+# Ignore local hidden VSCode settings 
+.vscode/

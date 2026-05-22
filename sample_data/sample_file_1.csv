@@ -1,0 +1,31 @@
+id,gender,SeniorCitizen,Partner,Dependents,tenure,PhoneService,MultipleLines,InternetService,OnlineSecurity,OnlineBackup,DeviceProtection,TechSupport,StreamingTV,StreamingMovies,Contract,PaperlessBilling,PaymentMethod,MonthlyCharges,TotalCharges,ExpectedCharges,ChargeDifference,Household_Score,high_risk,no_streaming_services,no_services,is_vulnerable
+594194,Female,0,Yes,No,72,Yes,Yes,Fiber optic,Yes,Yes,Yes,Yes,Yes,Yes,Two year,Yes,Electronic check,115.55,8061.5,8319.6,-258.10000000000036,1,0,0,0,0
+594195,Female,0,Yes,No,71,Yes,No,No,No internet service,No internet service,No internet service,No internet service,No internet service,No internet service,Two year,No,Bank transfer (automatic),19.8,1336.5,1405.8,-69.29999999999995,1,0,0,0,0
+594196,Male,0,No,No,12,Yes,No,DSL,Yes,Yes,No,No,No,No,Month-to-month,Yes,Bank transfer (automatic),55.55,633.55,666.5999999999999,-33.049999999999955,0,0,2,2,0
+594197,Male,0,Yes,Yes,71,Yes,Yes,DSL,Yes,No,Yes,Yes,Yes,Yes,Two year,No,Credit card (automatic),84.1,6457.15,5971.099999999999,486.0500000000002,2,0,0,1,0
+594198,Female,0,No,No,15,Yes,No,Fiber optic,Yes,No,No,No,Yes,Yes,Month-to-month,No,Electronic check,90.35,1233.65,1355.25,-121.59999999999991,0,0,0,3,0
+594199,Male,0,No,No,24,Yes,No,Fiber optic,No,No,No,No,No,No,Month-to-month,Yes,Credit card (automatic),69.95,1406.2,1678.8000000000002,-272.60000000000014,0,0,2,4,1
+594200,Female,0,No,No,1,Yes,No,Fiber optic,Yes,No,Yes,No,No,No,Month-to-month,Yes,Electronic check,78.6,78.6,78.6,0.0,0,0,2,2,0
+594201,Female,0,No,Yes,67,Yes,No,DSL,Yes,No,Yes,Yes,No,No,Two year,Yes,Bank transfer (automatic),60.35,3825.2,4043.4500000000003,-218.25000000000045,1,0,2,1,0
+594202,Female,0,Yes,No,55,Yes,Yes,Fiber optic,No,No,No,No,No,No,One year,No,Credit card (automatic),75.45,4459.15,4149.75,309.39999999999964,1,0,2,4,1
+594203,Female,0,No,No,50,Yes,Yes,Fiber optic,No,Yes,No,No,Yes,No,Month-to-month,Yes,Electronic check,89.85,4533.9,4492.5,41.399999999999636,0,0,1,3,0
+594204,Male,0,No,No,17,Yes,No,No,No internet service,No internet service,No internet service,No internet service,No internet service,No internet service,One year,No,Mailed check,19.8,279.3,336.6,-57.30000000000001,0,0,0,0,0
+594205,Male,0,Yes,Yes,54,Yes,No,Fiber optic,No,No,No,No,No,Yes,One year,Yes,Credit card (automatic),80.55,4676.7,4349.7,327.0,2,0,1,4,1
+594206,Male,1,Yes,No,60,Yes,Yes,Fiber optic,No,Yes,Yes,No,Yes,Yes,One year,Yes,Mailed check,106.05,6688.05,6363.0,325.0500000000002,1,0,0,2,0
+594207,Male,1,No,No,12,Yes,Yes,Fiber optic,No,Yes,No,No,No,Yes,Month-to-month,Yes,Electronic check,85.35,1133.95,1024.1999999999998,109.75000000000023,0,1,1,3,0
+594208,Male,0,No,No,41,Yes,No,No,No internet service,No internet service,No internet service,No internet service,No internet service,No internet service,Two year,Yes,Mailed check,19.6,845.25,803.6,41.64999999999998,0,0,0,0,0
+594209,Male,0,Yes,Yes,16,Yes,No,No,No internet service,No internet service,No internet service,No internet service,No internet service,No internet service,Month-to-month,No,Mailed check,20.8,275.7,332.8,-57.10000000000002,2,0,0,0,0
+594210,Male,0,Yes,No,18,Yes,Yes,Fiber optic,No,Yes,No,No,No,No,Month-to-month,Yes,Electronic check,79.6,1553.75,1432.8,120.95000000000005,1,0,2,3,0
+594211,Female,0,Yes,Yes,48,Yes,No,No,No internet service,No internet service,No internet service,No internet service,No internet service,No internet service,Two year,No,Electronic check,20.2,1103.95,969.5999999999999,134.35000000000014,2,0,0,0,0
+594212,Female,0,No,No,2,Yes,Yes,Fiber optic,No,No,No,Yes,Yes,No,Month-to-month,Yes,Electronic check,89.55,190.25,179.1,11.150000000000006,0,0,1,3,0
+594213,Male,0,No,No,46,Yes,Yes,Fiber optic,No,Yes,No,No,Yes,No,Month-to-month,No,Electronic check,90.6,4600.7,4167.599999999999,433.10000000000036,0,0,1,3,0
+594214,Female,0,No,No,41,Yes,No,No,No internet service,No internet service,No internet service,No internet service,No internet service,No internet service,Two year,No,Mailed check,20.25,865.1,830.25,34.85000000000002,0,0,0,0,0
+594215,Male,1,No,No,16,Yes,Yes,Fiber optic,No,No,No,No,No,No,Month-to-month,Yes,Electronic check,74.9,1266.5,1198.4,68.09999999999991,0,1,2,4,1
+594216,Male,0,No,No,46,No,No phone service,DSL,Yes,Yes,Yes,No,No,No,Two year,No,Credit card (automatic),40.65,2236.2,1869.8999999999999,366.29999999999995,0,0,2,1,0
+594217,Female,0,No,No,1,Yes,No,Fiber optic,No,No,Yes,No,Yes,Yes,Month-to-month,Yes,Electronic check,88.45,88.45,88.45,0.0,0,0,0,3,0
+594218,Male,0,No,Yes,3,Yes,No,No,No internet service,No internet service,No internet service,No internet service,No internet service,No internet service,Month-to-month,Yes,Mailed check,19.95,44.75,59.849999999999994,-15.099999999999994,1,0,0,0,0
+594219,Female,0,Yes,No,25,Yes,No,Fiber optic,No,No,No,No,No,No,Month-to-month,Yes,Electronic check,70.65,1710.7,1766.2500000000002,-55.55000000000018,1,0,2,4,1
+594220,Male,0,Yes,Yes,56,Yes,Yes,No,No internet service,No internet service,No internet service,No internet service,No internet service,No internet service,Two year,No,Mailed check,25.5,1396.6,1428.0,-31.40000000000009,2,0,0,0,0
+594221,Female,0,Yes,Yes,26,Yes,No,DSL,No,No,No,No,Yes,No,One year,No,Mailed check,54.5,1253.9,1417.0,-163.0999999999999,2,0,1,4,1
+594222,Male,0,No,No,68,Yes,No,DSL,Yes,No,No,No,No,No,Two year,No,Credit card (automatic),43.9,2732.0,2985.2,-253.19999999999982,0,0,2,3,0
+594223,Male,1,No,No,9,Yes,Yes,Fiber optic,No,No,No,No,Yes,Yes,Month-to-month,Yes,Electronic check,94.95,932.3,854.5500000000001,77.74999999999989,0,1,0,4,1
