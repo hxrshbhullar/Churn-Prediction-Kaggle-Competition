@@ -8,3 +8,6 @@ __pycache/
 
 # Ignore local hidden VSCode settings 
 .vscode/
+
+# Ignore Gemini API key
+.streamlit/secrets.toml

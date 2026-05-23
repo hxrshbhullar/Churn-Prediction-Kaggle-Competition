@@ -5,6 +5,7 @@ import pandas as pd
 import plotly.express as px
 import shap
 import streamlit as st
+from google import genai
 
 # ==========================================
 # USER-DEFINED CONFIGURATION PLACEHOLDERS
@@ -205,6 +206,60 @@ df_display = df_display[cols]
 
 st.dataframe(df_display, use_container_width=True, hide_index=True)
 
+# ==========================================
+# HELPER FUNCTIONS FOR GEN AI (Place these here or at the top of app.py)
+# ==========================================
+def get_top_shap_features(shap_values, feature_names, top_n=3):
+    """
+    Extracts the highest positive contributions (Risk) 
+    and lowest negative contributions (Grace).
+    """
+    df_shap = pd.DataFrame({
+        'Feature': feature_names,
+        'SHAP_Value': shap_values
+    })
+    
+    # Positive values increase churn risk
+    risk_features = df_shap.sort_values(by='SHAP_Value', ascending=False).head(top_n)
+    
+    # Negative values decrease churn risk
+    grace_features = df_shap.sort_values(by='SHAP_Value', ascending=True).head(top_n)
+    
+    return risk_features.to_dict(orient='records'), grace_features.to_dict(orient='records')
+
+
+def generate_ai_explanation(probability, risk_feats, grace_feats):
+    # Initialize the client 
+    client = genai.Client(api_key=st.secrets["GEMINI_API_KEY"])
+    
+    # Format the data into the prompt string
+    prompt = f"""
+    You are an expert customer retention analyst in a banking/telecom firm. 
+    A predictive machine learning model has flagged a customer with a Churn Probability of {probability:.1%}.
+    
+    Based on SHAP explainability values, here are the core dynamics:
+    
+    Top Risk Factors (Pushing them to leave):
+    {risk_feats}
+    
+    Top Grace Factors (Keeping them loyal):
+    {grace_feats}
+    
+    Provide a professional, concise 3-paragraph executive summary for the customer success team:
+    1. 'Risk Assessment': Explain in plain English why they are likely to leave based on the Risk Factors.
+    2. 'Retention Anchors': Highlight what is currently keeping them tied to us based on the Grace Factors.
+    3. 'Actionable Strategy': Give 2 concrete, tailored operational steps to prevent this customer from churning.
+    
+    Keep the tone professional, direct, and free of technical jargon like 'SHAP values' or 'coefficients'.
+    """
+    
+    # Call the lightweight, fast model
+    response = client.models.generate_content(
+        model='gemini-2.5-flash',
+        contents=prompt,
+    )
+    
+    return response.text
 
 # ==========================================
 # MAIN SECTION 2: SHAP Local Interpretability (Non-Technical)
@@ -221,9 +276,7 @@ if CUSTOMER_ID_COLUMN in df_raw.columns:
     selected_customer = st.selectbox(
         "Select Customer ID to audit:", customer_options
     )
-    selected_row_idx = df_raw[df_raw[CUSTOMER_ID_COLUMN] == selected_customer].index[
-        0
-    ]
+    selected_row_idx = df_raw[df_raw[CUSTOMER_ID_COLUMN] == selected_customer].index[0]
 else:
     # Fallback index selector if identifier column fails
     selected_row_idx = st.number_input(
@@ -236,15 +289,12 @@ else:
 
 # Isolate the exact selected observation vector
 single_obs = X_processed.iloc[[selected_row_idx]]
-cust_probability = df_display.loc[
-    selected_row_idx, "Churn Probability (%)"
-]
+cust_probability = df_display.loc[selected_row_idx, "Churn Probability (%)"]
 
 # Calculate SHAP structures
 explainer, shap_values = calculate_shap_values(model, X_processed)
 
 # Extract specific SHAP forces metrics for the current selection
-# Accommodates both old format array types and modern SHAP Explanation data blocks safely
 if hasattr(shap_values, "values"):
     row_shap_array = shap_values.values[selected_row_idx]
     base_value = (
@@ -286,7 +336,6 @@ with col_metrics:
         st.error(f"### {cust_probability:.2f}% \n High Churn Risk Profile")
     else:
         st.success(f"### {cust_probability:.2f}% \n Stable Retained Profile")
-    # st.caption(f"Auditing unique identifier: **{selected_customer}**. Baseline market average risk context falls near: {np.round(base_value*100, 1) if abs(base_value)<=1 else 'N/A'}%.")
 
 with col_drivers:
     st.subheader("Top 2 Churn Risk Drivers")
@@ -308,9 +357,30 @@ with col_graces:
                 f"  This metric acts as a strong anchor, keeping this customer loyal and lowering their churn probability."
             )
     else:
-        st.write(
-            "No active operational metrics are helping to anchor down this customer's risk score."
-        )
+        st.write("No active operational metrics are helping to anchor down this customer's risk score.")
+
+
+# ==========================================
+# ADDED: AI INTERPRETATION SUBSECTION
+# ==========================================
+st.markdown("---")
+st.subheader("AI-Generated Customer Insights")
+st.markdown("Click the button below to transform the SHAP values above into an executive customer summary.")
+
+if st.button("Generate Executive Retention Brief", type="primary"):
+    with st.spinner("Gemini is analyzing customer risk dynamics..."):
+        # 1. Get the SHAP data for the selected customer using existing variables
+        risk_feats, grace_feats = get_top_shap_features(row_shap_array, MODEL_FEATURES)
+        
+        # 2. Convert 0-100 percentage back to 0-1 fraction for proper prompt formatting (.1%)
+        fractional_prob = cust_probability / 100.0
+        
+        # 3. Fetch the LLM response
+        ai_brief = generate_ai_explanation(fractional_prob, risk_feats, grace_feats)
+        
+        # 4. Render it inside an information layout card
+        st.info("### Executive Briefing Note")
+        st.write(ai_brief)
 
 
 # ==========================================
